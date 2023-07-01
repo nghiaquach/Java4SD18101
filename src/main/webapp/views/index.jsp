@@ -9,5 +9,11 @@
 <body>
 	<H1>Java 4 Home Page</H1>
 	<h4>${welcome}</h4>
+	
+	<!-- /TenDuAn/MyServlet -->
+	<form action="/SD18101/MyServlet" method="POST">
+		<button type="submit">Post</button>
+	</form>
+	
 </body>
 </html>

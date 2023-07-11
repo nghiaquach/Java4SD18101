@@ -12,7 +12,11 @@
 	
 	<!-- /TenDuAn/MyServlet -->
 	<form action="/SD18101/MyServlet" method="POST">
-		<button type="submit">Post</button>
+		<input name="fullname" placeholder="enter fullname"><br/>
+		<input name="favorites" type="checkbox" value="RE">Reading<br/>
+		<input name="favorites" type="checkbox" value="MU">Music<br/>
+		<input name="favorites" type="checkbox" value="SH">Shopping<br/>
+		<button type="submit">Submit</button>
 	</form>
 	
 </body>

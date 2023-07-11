@@ -35,6 +35,15 @@ public class MyServlet extends HttpServlet {
     	}
     	else {
     		System.out.println("@@@ Post in Service");
+    		String fullname = req.getParameter("fullname");
+    		String[] favorites = req.getParameterValues("favorites");
+    		
+    		System.out.println("fullname " + fullname);
+    		
+    		
+    		for (int i = 0; i < favorites.length; i++) {
+    			System.out.println("favorites " + favorites[i]);
+			}
     	}
     }
 

@@ -18,6 +18,8 @@
 		<input name="favorites" type="checkbox" value="SH">Shopping<br/>
 		<button type="submit">Submit</button>
 	</form>
+	<br/>
+	<%@ include file="subpage.jsp" %>
 	
 </body>
 </html>

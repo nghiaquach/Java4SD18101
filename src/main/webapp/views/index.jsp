@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%> 
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +12,17 @@
 </head>
 <body>
 	<H1>Java 4 Home Page</H1>
-	<h4>${welcome}</h4>
+	<jsp:useBean id="now" class="java.util.Date"/>
+	<H5><fmt:formatDate value="${now}" pattern="EEE, dd/MM hh:mm:ss a"/></H5>
+	<br/>
+	<c:if test="${!empty sessionScope.user}">
+		<h4>Welcome, ${fn:toUpperCase(sessionScope.user.fullName)} - ${sessionScope.user.email}</h4>
+		
+	</c:if>
+	
+	<c:if test="${empty sessionScope.user}">
+		<h4>Please login!</h4>
+	</c:if>
 	
 	<!-- /TenDuAn/MyServlet -->
 	<form action="/SD18101/MyServlet" method="POST">

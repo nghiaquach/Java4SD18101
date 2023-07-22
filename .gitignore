@@ -1,3 +1,15 @@
 *.class
+target/*
+.settings/
+.classpath
+*.classpath
+*.class
+*.prefs
+*.jar
+*.project
+*.original
 target/
 .settings/
+.apt_generated
+.springBeans
+

@@ -1,22 +1,37 @@
 package com.fpoly.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table (name="Users")
 public class User {
-	String userName;
-	String fullName;
-	String email;
-	String password;
 	
-	public String getUserName() {
-		return userName;
+	@Id
+	@Column(name = "id")
+	String id;
+	@Column(name = "fullname")
+	String fullname;
+	@Column(name = "email")
+	String email;
+	@Column(name = "password")
+	String password;
+	@Column(name = "admin")
+	boolean admin;
+	
+	public String getId() {
+		return id;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setId(String id) {
+		this.id = id;
 	}
-	public String getFullName() {
-		return fullName;
+	public String getFullname() {
+		return fullname;
 	}
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
 	}
 	public String getEmail() {
 		return email;
@@ -30,7 +45,12 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+	public boolean isAdmin() {
+		return admin;
+	}
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
 	
 	
 }

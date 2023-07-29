@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.StoredProcedureQuery;
 import javax.persistence.TypedQuery;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -42,6 +43,12 @@ public class VideoServlet extends HttpServlet {
 		
 		TypedQuery<Report> query = em.createQuery(jpql, Report.class);
 		List<Report> list = query.getResultList();	
+		
+		//Find video title by procedure
+		
+		StoredProcedureQuery spQuery = em.createStoredProcedureQuery("findByVideoTitle");
+		spQuery.setParameter("title", "%9");
+    	List<Video> videos = spQuery.getResultList();
 		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}

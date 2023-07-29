@@ -3,8 +3,21 @@ package com.fpoly.entity;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedStoredProcedureQueries;
+import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
+
+@NamedStoredProcedureQueries({
+	@NamedStoredProcedureQuery(
+			name = "User.findByVideoTitle", 
+			procedureName = "sp_FindByVideoTitle", 
+			resultClasses = {User.class},
+			parameters = @StoredProcedureParameter(name="title",type=String.class)
+	)
+})
+
 
 @Entity @Table(name="Videos")
 public class Video {

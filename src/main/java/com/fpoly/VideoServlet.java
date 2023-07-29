@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,7 +35,13 @@ public class VideoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		EntityManager em = JPAUtils.getEntityManager();
-		List<Favorite> favorites = em.find(User.class, "1").getFavorites();
+		//List<Favorite> favorites = em.find(User.class, "1").getFavorites();
+		//get favorites
+		String jpql = "SELECT new Report(f.video.title, count(f.id), min(f.likeDate), max(f.likeDate))"
+				+ " FROM Favorite f GROUP BY f.video.title";
+		
+		TypedQuery<Report> query = em.createQuery(jpql, Report.class);
+		List<Report> list = query.getResultList();	
 		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}

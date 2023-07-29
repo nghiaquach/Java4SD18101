@@ -5,6 +5,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +17,7 @@ import org.apache.commons.beanutils.BeanUtils;
 
 import com.fpoly.dao.UserDAO;
 import com.fpoly.entity.User;
+import com.utils.JPAUtils;
 
 /**
  * Servlet implementation class UserServlet
@@ -34,6 +37,14 @@ public class UserServlet extends HttpServlet {
     
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    	//Find user by email
+    	EntityManager em = JPAUtils.getEntityManager();
+    	TypedQuery<User> query = em.createNamedQuery("User.findByEmail", User.class);
+    	query.setParameter("email", "%d%");
+    	List<User> users = query.getResultList();
+    	
+    	em.clear();
+    	
     	UserDAO userDao = new UserDAO();
     	String userId = req.getParameter("id");
     	User user = new User();

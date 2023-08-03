@@ -16,7 +16,7 @@
 	<H5><fmt:formatDate value="${now}" pattern="EEE, dd/MM hh:mm:ss a"/></H5>
 	<br/>
 	<c:if test="${!empty sessionScope.user}">
-		<h4>Welcome, ${fn:toUpperCase(sessionScope.user.fullName)} - ${sessionScope.user.email}</h4>
+		<h4>Welcome, ${fn:toUpperCase(sessionScope.user.fullname)} - ${sessionScope.user.email}</h4>
 		
 	</c:if>
 	
@@ -32,8 +32,6 @@
 		<input name="favorites" type="checkbox" value="SH">Shopping<br/>
 		<button type="submit">Submit</button>
 	</form>
-	<br/>
-	<%@ include file="subpage.jsp" %>
-	
+	<br/>	
 </body>
 </html>

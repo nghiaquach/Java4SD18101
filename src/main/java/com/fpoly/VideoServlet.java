@@ -46,7 +46,7 @@ public class VideoServlet extends HttpServlet {
 		
 		//Find video title by procedure
 		
-		StoredProcedureQuery spQuery = em.createStoredProcedureQuery("findByVideoTitle");
+		StoredProcedureQuery spQuery = em.createStoredProcedureQuery("Video.findByVideoTitle");
 		spQuery.setParameter("title", "%9");
     	List<Video> videos = spQuery.getResultList();
 		

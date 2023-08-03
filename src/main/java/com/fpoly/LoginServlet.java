@@ -3,6 +3,7 @@ package com.fpoly;
 import java.io.IOException;
 import java.util.Iterator;
 
+import javax.persistence.NoResultException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.fpoly.dao.UserDAO;
 import com.fpoly.entity.User;
 
 /**
@@ -54,25 +56,24 @@ public class LoginServlet extends HttpServlet {
 		
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-			
-		if(email.equals("fpoly@gmail.com") && password.equals("Cantho")) {
-//			//save cookie
-//			Cookie ck = new Cookie("email", email);
-//			ck.setMaxAge(10*3600);
-//			ck.setPath("/");
-//			response.addCookie(ck);
-			User user = new User();
-			user.setEmail(email);
-			user.setPassword(password);
-			user.setFullname("Tran Van C");
-			
-			HttpSession session=request.getSession();  
-		    session.setAttribute("user",user);
-		    
-		    //Xoá session = logout
-		    //session.removeAttribute("user");
-		}
 		
+		UserDAO userDao = new UserDAO();
+		
+		
+		 try {
+			 User user = userDao.findByEmail(email);
+			 
+			if(email.equals(user.getEmail()) && password.equals(user.getPassword())) {	
+				HttpSession session=request.getSession();  
+			    session.setAttribute("user",user);
+			    request.getRequestDispatcher("views/index.jsp").forward(request, response);
+			}
+		
+		 } catch (NoResultException e) {
+			 request.setAttribute("message", "Sai thông tin email và password");
+			 request.getRequestDispatcher("views/login.jsp").forward(request, response);
+	           
+	     }	
 	}
 
 }

@@ -14,7 +14,7 @@ import javax.persistence.Table;
 			name = "User.findByVideoTitle", 
 			procedureName = "sp_FindByVideoTitle", 
 			resultClasses = {User.class},
-			parameters = @StoredProcedureParameter(name="title",type=String.class)
+			parameters = {@StoredProcedureParameter(name="title",type=String.class)}
 	)
 })
 

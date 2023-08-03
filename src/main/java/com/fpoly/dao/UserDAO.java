@@ -22,6 +22,14 @@ public class UserDAO {
 		return em.find(User.class, id);
 	}
 	
+	//Find User by email address
+	public User findByEmail(String email) {
+		String jpql = "Select o from User o WHERE o.email LIKE:email";
+		TypedQuery<User> query = em.createQuery(jpql, User.class);
+		query.setParameter("email", email);
+		return query.getSingleResult();
+	}
+	
 	public User create(User user) {
 		try {
 			em.getTransaction().begin();

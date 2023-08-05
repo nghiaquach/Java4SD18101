@@ -7,10 +7,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fpoly.utils.XScope;
+
 /**
  * Servlet implementation class HomeServlet
  */
-@WebServlet("/Home")
+@WebServlet({"/home/index","/home/contact","/home/about"})
 public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -26,15 +28,21 @@ public class HomeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//chuyen toi trang index.jsp
-		String name = request.getParameter("name");
+		//String uri = request.getRequestURI();
+		String uri = request.getRequestURI();
 		
-		if(name != null) {
-			request.setAttribute("welcome", "Chào " + name);
+		if(uri.contains("index")) {
+			request.setAttribute("view", "/views/home/index.jsp");
+		}
+		else if(uri.contains("contact")) {
+			request.setAttribute("view", "/views/home/contact.jsp");
+		}
+		else {
+			request.setAttribute("view", "/views/home/about.jsp");
 		}
 		
-		request.getRequestDispatcher("views/index.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/layout.jsp").forward(request, response);
+		
 	}
 
 	/**

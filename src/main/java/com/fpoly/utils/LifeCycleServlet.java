@@ -1,4 +1,4 @@
-package com.utils;
+package com.fpoly.utils;
 
 import java.io.IOException;
 

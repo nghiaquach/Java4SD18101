@@ -6,7 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import com.fpoly.entity.User;
-import com.utils.JPAUtils;
+import com.fpoly.utils.JPAUtils;
 
 public class UserDAO {
 	private EntityManager em = JPAUtils.getEntityManager();

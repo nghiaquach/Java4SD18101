@@ -17,7 +17,7 @@ import org.apache.commons.beanutils.BeanUtils;
 
 import com.fpoly.dao.UserDAO;
 import com.fpoly.entity.User;
-import com.utils.JPAUtils;
+import com.fpoly.utils.JPAUtils;
 
 /**
  * Servlet implementation class UserServlet

@@ -14,7 +14,7 @@ import com.fpoly.entity.User;
 /**
  * Servlet Filter implementation class AuthFilter
  */
-@WebFilter({"/video/like","video/share","/admin/"})
+@WebFilter({"/admin/"})
 public class AuthFilter implements HttpFilter {
        
 
